@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Arrival</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+         body{
+         
+            height: 100%;
+         }
+         html{
+            overflow-y: scroll;
+            overflow-x: scroll;
+         }
+         body {
+    position: relative;
+   
+}
+.content {
+    position: static;
+    z-index: 1; /* Content stays above the background */
+    color: white;
+    padding: 20px;
+   
+}
+.navbar{
+             padding-left: 0px; padding-right: 5%; position: fixed;  width: 100%; top: 0; z-index: 9999; left: 0; text-align: center; 
+           }
+        .navbar{
+           
+            position: fixed;
+            width: 110%;
+            height: 100px;
+            z-index: 10;
+        
+        }
+        .img-deg{
+            width: 110%;
+            height: 140px;
+            padding-right: 15%;
+        }  
+        .main{
+            height: 100%;
+            margin-top: 8rem;
+            padding: 10px 60px;
+          
+        }
+        #sidebarMenu{
+            height: 80%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 230px;
+            margin-top: 8.5rem;
+            background: white;
+            overflow-y: scroll;
+            transform: translateX(-250px);
+            transition: transform 250ms ease-in-out; 
+        }
+        #openSidebarMenu:checked ~ #sidebarMenu{
+            transform: translateX(0px);
+}  
+.namesList{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .namesList li{
+            color: #fff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+        }
+        .namesList li a{
+            color:#fff;
+            display: block;
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 20px;
+
+        }
+        .namesList li a:hover{
+            color: white;
+            background-color: red;
+        }
+        .sidebarIconToggle{
+            width: 22px;
+            height: 22px;
+            z-index: 20;
+            top: 22px;
+            left: 15px;
+            cursor: pointer;
+           
+        }
+        .sidebarIconToggle{
+            position: fixed;
+        }
+        .spinner{
+            height: 3px;
+            background: #fff;
+            transition: all 0.3s;
+        }
+        .spinner.middle,
+        .spinner.bottom{
+            margin-top: 3px;
+        }
+        #openSidebarMenu:checked ~  .sidebarIconToggle > .spinner.middle{
+            opacity: 0;
+        }
+        #openSidebarMenu:checked ~  .sidebarIconToggle > .spinner.top{
+            transform: rotate(135deg);
+            margin-top: 8px;
+        }
+        #openSidebarMenu:checked ~  .sidebarIconToggle > .spinner.bottom{
+            transform: rotate(-135deg);
+            margin-top: -9px;
+        }
+        div1 {
+        margin-left: 22%;
+        padding: 4px 10px;
+        display: inline-block;
+        justify-content: center;
+        text-align: center justify;
+        min-height: 100vh;
+       margin-top: 50px;  
+        visibility:visible;
+        margin-right: 40px;
+        width: 80%;
+        font-weight: 200;  
+        color: #000;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        line-height: 1.6;
+        
+    }
+    /* Basic style for images */
+    .image-container {
+            width: 80%;
+            margin: 10px auto;
+           height: 50%;
+    }
+    .content {
+      padding-right: 300px; /* To avoid overlap with the sidebar */
+      padding: 20px;
+    
+    }
+  
+/* Content styling */
+.content {
+  margin-right: 220px; /* Make space for the sidebar */
+  padding: 20px;
+
+}
+
+/* Media Query for smaller screens (e.g., mobile devices) */
+@media screen and (max-width: 768px) {
+    .navbar{
+           
+           position: fixed;
+           width: 110%;
+           height: 100px;
+           z-index: 10;
+       
+       }
+       .img-deg{
+           width: 110%;
+           height: 140px;
+           padding-right: 15%;
+       }  
+  .content {
+    margin-right: 0; /* Remove the margin when sidebar is at the bottom */
+  }
+  #sidebarMenu{
+        position:static; /* Change to static so it is part of the normal document flow */
+        width: 100%;
+         height: auto; /* Adjust height based on content */
+        box-shadow: none;
+        margin-top: 20px;
+        margin-right: 0;
+        margin-left: 0;
+        display: inline-flexbox;
+         overflow-y: scroll;
+         transform: translateX(-250px);
+         transition: transform 250ms ease-in-out; 
+        }
+        .menu{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .menu li{
+            color: #fff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+        }
+        .menu li a{
+            color: #000;
+            display: block;
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 20px;
+
+        }
+        .menu li a:hover{
+            color: white;
+            background-color: red;
+        }
+        .sidebarIconToggle{
+            width: 22px;
+            height: 22px;
+           
+            z-index: 20;
+            top: 22px;
+            left: 15px;
+            cursor: pointer;
+           
+        }
+        .sidebarIconToggle{
+            position: fixed;
+        }
+        .spinner{
+            height: 3px;
+            background: #fff;
+            transition: all 0.3s;
+        }
+        .spinner.middle,
+        .spinner.bottom{
+            margin-top: 3px;
+        }
+        #openSidebarMenu:checked ~  .sidebarIconToggle > .spinner.middle{
+            opacity: 0;
+        }
+        #openSidebarMenu:checked ~  .sidebarIconToggle > .spinner.top{
+            transform: rotate(135deg);
+            margin-top: 8px;
+        }
+        #openSidebarMenu:checked ~  .sidebarIconToggle > .spinner.bottom{
+            transform: rotate(-135deg);
+            margin-top: -9px;
+        }
+        div1 {
+        padding: 4px 10px;
+        display: inline;
+        justify-content: center;
+        text-align: center justify;
+        min-height: 100vh;
+       margin-top: 50px;  
+        visibility:visible;
+        margin-right: 40px;
+        width: 100%;
+        color: black;
+    }
+}
+@media screen and (max-width: 768px){
+
+
+  /* Style for the images in a line */
+  .image-container {
+            display: inline-block;
+            justify-content: space-around;
+          
+            width: 100%;
+        }
+
+        .thumbnail {
+           max-width: 100%;
+            height: auto;
+            cursor: pointer;
+            margin: 10px;
+            border: 2px solid #ccc;
+            transform: scale(1.1);
+        }
+         /* Style for the images in a line */
+         .image-container {
+            display: inline-block;
+            justify-content: space-around;
+            width: 100%;
+            
+        }
+        .thumbnail {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            margin: 10px;
+            border: 2px solid #ccc;
+        }
+        #searchInput {
+            width: 95%;
+  padding: 8px;
+  margin-bottom: 10px;
+margin-top: 30%;
+  background-color: #fff;
+  border: none;
+  color: black;
+  font-size: 14px;
+  border-radius: 5px;
+  border-color: #000;
+  box-sizing: border-box;
+  position: sticky; /* This makes the search box stick to the top */
+  top: 10px; /* Position it a bit below the top */
+  z-index: 1; /* Keep it above the menu items */
+  transition: opacity 0.5s ease, visibility 0s 0.5s; /* Smooth transition for search box visibility */
+        }
+        #searchInput:hover{
+            border-color: #000;
+            
+        }
+        .item {
+            padding: 8px;
+            margin: 4px;
+        }
+        .item:hover{
+            background-color: #ccc;
+        }
+    }  
+        /* Style for the images in a line */
+        .image-container {
+            display: inline-block;
+            justify-content: space-around;
+            width: 100%;
+            
+        }
+        .thumbnail {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            margin: 10px;
+            border: 2px solid #ccc;
+        }
+        #searchInput {
+            width: 95%;
+  padding: 8px;
+  margin-bottom: 10px;
+
+  background-color: #fff;
+  border: none;
+  color: black;
+  font-size: 14px;
+  border-radius: 5px;
+  border-color: #000;
+  box-sizing: border-box;
+  position: sticky; /* This makes the search box stick to the top */
+  top: 10px; /* Position it a bit below the top */
+  z-index: 1; /* Keep it above the menu items */
+  transition: opacity 0.5s ease, visibility 0s 0.5s; /* Smooth transition for search box visibility */
+        }
+        #searchInput:hover{
+            border-color: #000;
+            
+        }
+        .item {
+            padding: 8px;
+            margin: 4px;
+            color: blue;
+        }
+        .item:hover{
+            background-color: #ccc;
+        }
+         /* Initially hide the submenu */
+.side-menu ul li .submenu {
+    display: none;
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.side-menu ul li:hover .submenu {
+    display: block;
+}
+
+/* Optional: Style submenu items */
+.side-menu ul li .submenu li a {
+    padding: 8px;
+}
+
+.side-menu ul li .submenu li a:hover {
+    background-color: #777;
+}
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="navbar">
+        <img class="img-deg" src="img/D365.png" >
+    </div>
+    
+    <input type="checkbox" id="openSidebarMenu">
+    <label for="openSidebarMenu" class="sidebarIconToggle">
+        <div class="spinner top"></div>
+        <div class="spinner middle"></div>
+        <div class="spinner bottom"></div>
+    </label>
+    <div id="sidebarMenu">
+        <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for names...">
+        <ul id="namesList">
+            <li class="item"><a href="purchase requisition.html"> Purchase Requisitions</a></li>
+            <li class="item"><a href="po.html"> Purchase Order</a></li>
+                <li class="item"><a href="Item Arrival.html"> Item Arrival</a></li> 
+                 <li class="item"><a href="Gate Entry.html"> Gate Entry</a></li>   
+                 <li class="item"><a href="rgp.html"> Retunable Gate Pass(RGP)</a></li> 
+                 <li class="item"><a href="nrgp.html">Non Returnable Gate Pass(NRGP)</a></li> 
+                 <li class="item"><a href="Indent.html">Indent creation To GRN For Harshiv</a></li> 
+                <li class="item"><a href="indent transfer.html">Indent creation To GRN For Same Entity</a></li> 
+                 <li class="item"><a href="transfer.html">Transfer Order</a></li>   
+                 <li class="item"><a href="production.html">Production Order</a></li>  
+                 <li class="item"><a href="statement.html">Statement Posting</a></li>   
+                 <li class="item"><a href="shortcloase.html">Short Close Purchase Order</a></li>   
+                 <li class="item"><a href="wastage.html">Wastage Posting</a></li>  
+        </ul>
+    </div>
+    <div1 class="main">
+        <a name="Item Arrival">
+            <h3> Item Arrival</h3>
+       <br> <li>Inventory management&gt; journal Entries &gt;Item Arrival</li>
+       <img src="img/itemarrival1.jpg" alt="" class="thumbnail" id="image7">
+                 <br><li>Click new</li>
+               <img src="img/newitem.jpg" alt="" class="thumbnail" id="image8">
+                <li>Fill the packing slip with vendor provided invoice.</li>
+                <br><li>Fill warehouse, Site, Account number, PO number and click OK.</li>
+                <img src="img/itemarrival2.jpg" alt="" class="thumbnail" id="image9">
+              <br><li>Click function and create lines.</li>
+              <img src="img/function.jpg" alt="" class="thumbnail" id="image10">
+                <li>Add manufacturer date, Expiry date, Batch number.</li>
+                <img src="img/itembatch.jpg" alt="" class="thumbnail" id="image11">
+                <br><li>Users need to Click on Validate Button and Than Post Button.</li>
+                <img src="img/validitem.jpg" alt="" class="thumbnail" id="image12">
+            
+               
+                <box>
+                  <br>  <li>If the item is damaged,wastage or short received kindly follow below steps.</li>
+                </box>
+                <li>Click functions in journal lines.</li>
+                <img src="img/itemsplit.jpg" alt="" class="thumbnail" id="image13">
+                <li>Click split and Mention the item qty in split. </li>
+                <li>click ok</li>
+                <li>In line details click dimension and select location.</li>
+                <li>Select the wastage or short and damaged location the qty.</li>
+                <img src="img/itemlocation.jpg" alt="" class="thumbnail" id="image14">
+             <br><li>Click Validate and Post.</li>
+             <img src="img/validitem.jpg" alt="" class="thumbnail" id="image15">
+                <li>To check GRN go to purchase order tab.</li>
+               <li>Users need to click on Receive tab after that Product Receipt Tab in all Purchase order</li>
+               <img src="img/itemproduct.jpg" alt="" class="thumbnail" id="image16">
+               <li>Check the product receipt journal</li>
+       
+        </a></p>
+     
+    </div1><script>
+    // Function to pop out the image
+    function popOutImage(imageId) {
+        const image = document.getElementById(imageId); // Get the clicked image element
+        const imageUrl = image.src; // Get the image source (src attribute)
+        
+        // Open a new window with a large version of the image
+        const popoutWindow = window.open("", "Popout Image", "width=800,height=600");
+        popoutWindow.document.write("<html><body><img src='" + imageUrl + "' style='width:100%; height:auto;'></body></html>");
+    }
+
+    // Add click event listeners to each image
+    document.getElementById("image7").onclick = function() { popOutImage("image7"); };
+    document.getElementById("image8").onclick = function() { popOutImage("image8"); };
+    document.getElementById("image9").onclick = function() { popOutImage("image9"); };
+    document.getElementById("image10").onclick = function() { popOutImage("image10"); };
+    document.getElementById("image11").onclick = function() { popOutImage("image11"); };
+    document.getElementById("image12").onclick = function() { popOutImage("image12"); };
+    document.getElementById("image13").onclick = function() { popOutImage("image13"); };
+    document.getElementById("image14").onclick = function() { popOutImage("image14"); };
+    document.getElementById("image15").onclick = function() { popOutImage("image15"); };
+    document.getElementById("image16").onclick = function() { popOutImage("image16"); };
+    document.getElementById("image17").onclick = function() { popOutImage("image17"); };
+    document.getElementById("image18").onclick = function() { popOutImage("image18"); };
+    function searchFunction() {
+            var input, filter, namesList, items, i, textValue;
+            input = document.getElementById('searchInput');
+            filter = input.value.toUpperCase();  // Convert the input to uppercase for case-insensitive comparison
+            namesList = document.getElementById('namesList');
+            items = namesList.getElementsByClassName('item');
+            
+            // Loop through all items and hide those that don't match the search
+            for (i = 0; i < items.length; i++) {
+                textValue = items[i].textContent || items[i].innerText;
+                if (textValue.toUpperCase().indexOf(filter) > -1) {
+                    items[i].style.display = "";  // Show item
+                } else {
+                    items[i].style.display = "none";  // Hide item
+                }
+            }
+        }
+</script>
+</div>
+
+</body>
+</html>
+
