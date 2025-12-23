@@ -4,53 +4,100 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Store Document - Index</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    /* Body styling */
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
       text-align: center;
-      padding: 30px;
+      padding: 50px 20px;
+      color: #333;
+      min-height: 100vh;
     }
+
     h1 {
       margin-bottom: 20px;
+      font-size: 2.5em;
+      color: #fff;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
     }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 40px;
+      color: #f0f0f0;
+    }
+
+    /* List styling */
     ul {
       list-style: none;
       padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
     }
+
     li {
-      margin: 10px 0;
+      margin: 0;
     }
+
+    /* Card-style buttons */
     a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       text-decoration: none;
-      color: white;
+      color: #fff;
       background: #007bff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      transition: 0.3s;
+      padding: 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+      opacity: 0;
+      animation: fadeIn 0.8s forwards;
     }
+
     a:hover {
-      background: #0056b3;
+      background: linear-gradient(90deg, #007bff, #00d4ff);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.25);
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      h1 { font-size: 2em; }
+      p { font-size: 1em; }
+      a { padding: 15px; font-size: 0.9em; }
     }
   </style>
 </head>
 <body>
-  <h1>📂 Store Document</h1>
+  <h1>📂Store Document</h1>
   <p>Select a page:</p>
   <ul>
-    <li><a href="Gate Entry.html">Gate Entry</a></li>
-    <li><a href="indent transfer.html">Indent Transfer</a></li>
-    <li><a href="Indent.html">Indent</a></li>
-    <li><a href="Item Arrival.html">Item Arrival</a></li>
-    <li><a href="nrgp.html">NRGP</a></li>
-    <li><a href="po.html">Purchase Order</a></li>
-    <li><a href="production.html">Production</a></li>
-    <li><a href="purchase requisition.html">Purchase Requisition</a></li>
-    <li><a href="rgp.html">RGP</a></li>
-    <li><a href="shortclose.html">Short Close</a></li>
-    <li><a href="statement.html">Statement</a></li>
-    <li><a href="transfer.html">Transfer</a></li>
-    <li><a href="wastage.html">Wastage</a></li>
+    <li><a href="Gate Entry.html">🚪 Gate Entry</a></li>
+    <li><a href="indent transfer.html">🔄 Indent Transfer</a></li>
+    <li><a href="Indent.html">📝 Indent</a></li>
+    <li><a href="Item Arrival.html">📦 Item Arrival</a></li>
+    <li><a href="nrgp.html">⚡ NRGP</a></li>
+    <li><a href="po.html">🛒 Purchase Order</a></li>
+    <li><a href="production.html">🏭 Production</a></li>
+    <li><a href="purchase requisition.html">📄 Purchase Requisition</a></li>
+    <li><a href="rgp.html">🔙 RGP</a></li>
+    <li><a href="shortclose.html">⏹️ Short Close</a></li>
+    <li><a href="statement.html">📊 Statement</a></li>
+    <li><a href="transfer.html">🔁 Transfer</a></li>
+    <li><a href="wastage.html">♻️ Wastage</a></li>
   </ul>
 </body>
 </html>
